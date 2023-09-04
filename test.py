@@ -28,11 +28,11 @@ for i in range(20):  # Inicializar la lista con 20 elementos
 
 print("Estos son los datos que llegann",recv)
 
-#payload
-a = int(recv[17])-33
+#payload voltaje
+"""a = int(recv[17])-33
 b = int(recv[16])-33
 volt = str(a)+str(b)
 volt= int(volt)/10
-print("Voltaje: ",volt)
+print("Voltaje: ",volt)"""
 
 ser.close()
