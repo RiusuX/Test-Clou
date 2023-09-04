@@ -11,13 +11,12 @@ ser = serial.Serial(
 )
 ser.isOpen()
 #VOLTA: 68 16 00 00 00 15 20 68 11 04 33 34 34 35 1B 16
-hex_string = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
+#hex_string = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
+hex_string = input("ingrese la trama de solicitud : ")
 byte_data = bytes.fromhex(hex_string.replace(' ',''))
-datos = []
 
 #Envio de trama
-print("Trama de datos enviada exitosamente", byte_data)
-print(binascii.hexlify(byte_data).decode('utf-8'))
+print("Trama de datos enviada exitosamente")
 ser.write(byte_data)
 
 
