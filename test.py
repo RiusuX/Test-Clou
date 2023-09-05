@@ -10,10 +10,21 @@ ser = serial.Serial(
     stopbits=serial.STOPBITS_ONE
 )
 ser.isOpen()
-#VOLTA: 68 16 00 00 00 15 20 68 11 04 33 34 34 35 1B 16
-#hex_string = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
-hex_string = input("ingrese la trama de solicitud : ")
-byte_data = bytes.fromhex(hex_string.replace(' ',''))
+hex_volt = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
+hex_hz = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
+hex_amp = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
+hex_ = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
+hex_ = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
+hex_ = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
+hex_ = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
+
+byte_data = bytes.fromhex(hex_.replace(' ',''))
+byte_data = bytes.fromhex(hex_.replace(' ',''))
+byte_data = bytes.fromhex(hex_.replace(' ',''))
+byte_data = bytes.fromhex(hex_.replace(' ',''))
+byte_data = bytes.fromhex(hex_.replace(' ',''))
+byte_data = bytes.fromhex(hex_.replace(' ',''))
+byte_data = bytes.fromhex(hex_.replace(' ',''))
 
 #Envio de trama
 print("Trama de datos enviada exitosamente")
