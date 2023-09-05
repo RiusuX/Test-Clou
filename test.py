@@ -2,48 +2,57 @@ import time
 import serial
 import binascii
 
-ser = serial.Serial(
-    port='COM6',
-    baudrate=2400,
-    bytesize=serial.EIGHTBITS,
-    parity=serial.PARITY_EVEN,
-    stopbits=serial.STOPBITS_ONE
-)
-ser.isOpen()
-hex_volt = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
-hex_hz = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
-hex_amp = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
-hex_ = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
-hex_ = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
-hex_ = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
-hex_ = '68 16 00 00 00 15 20 68 11 04 33 34 34 35 00 16'
+#envio y lectura de trama 
+def trama(hex_string):
+    #Configuracion del puerto
+    ser = serial.Serial(port='COM6',baudrate=2400,
+                        bytesize=serial.EIGHTBITS,
+                        parity=serial.PARITY_EVEN,
+                        stopbits=serial.STOPBITS_ONE)
+    #inicia la comunicacion
+    ser.isOpen()
+    #envio trama de solicitud
+    byte_data = bytes.fromhex(hex_string.replace(' ',''))
+    print("Trama de datos enviada exitosamente")
+    ser.write(byte_data)
+    # Lee los datos recibidos desde el puerto serial
+    recv=[]
+    for i in range(20):  # Inicializar la lista con 20 elementos
+        recv.append(binascii.hexlify(ser.read()).decode('utf-8'))
+    print("Estos son los datos que llegann",recv)
+    ser.close()
+    return recv
 
-byte_data = bytes.fromhex(hex_.replace(' ',''))
-byte_data = bytes.fromhex(hex_.replace(' ',''))
-byte_data = bytes.fromhex(hex_.replace(' ',''))
-byte_data = bytes.fromhex(hex_.replace(' ',''))
-byte_data = bytes.fromhex(hex_.replace(' ',''))
-byte_data = bytes.fromhex(hex_.replace(' ',''))
-byte_data = bytes.fromhex(hex_.replace(' ',''))
+def cal_two(recv, e):
+    a = int(recv[17])-33
+    b = int(recv[16])-33
+    c = int(recv[15])-33
+    d = int(recv[14])-33
+    c = str(a)+str(b) #concatenacion de los numeros
+    c = int(c)/e
+    return c
 
-#Envio de trama
-print("Trama de datos enviada exitosamente")
-ser.write(byte_data)
+def cal_two(recv,e):
+    a = int(recv[17])-33
+    b = int(recv[16])-33
+    c = int(recv[15])-33
+    d = str(a)+str(b)+str(c) #concatenacion de los numeros
+    d = int(d)/ e
+    return d
+
+#Potencia activa: '68 16 00 00 00 15 20 68 11 04 33 33 36 35 01 16'
+hex_string = '68 16 00 00 00 15 20 68 11 04 33 33 36 35 01 16'
+recv = trama(hex_string)
+act_power = 
+#xx: '68 16 00 00 00 15 20 68 11 04 xx xx xx xx cs 16
+#xx: '68 16 00 00 00 15 20 68 11 04 xx xx xx xx cs 16
+#xx: '68 16 00 00 00 15 20 68 11 04 xx xx xx xx cs 16
+#xx: '68 16 00 00 00 15 20 68 11 04 xx xx xx xx cs 16
+#xx: '68 16 00 00 00 15 20 68 11 04 xx xx xx xx cs 16
+#xx: '68 16 00 00 00 15 20 68 11 04 xx xx xx xx cs 16
 
 
-# Lee los datos recibidos desde el puerto serial
-recv=[]
-for i in range(20):  # Inicializar la lista con 20 elementos
-    recv.append(binascii.hexlify(ser.read()).decode('utf-8'))
-    #print("dato # ", i + 1, ":", recv[i])
 
-print("Estos son los datos que llegann",recv)
+print("Voltaje: ",volt)
 
-#payload voltaje
-"""a = int(recv[17])-33
-b = int(recv[16])-33
-volt = str(a)+str(b)
-volt= int(volt)/10
-print("Voltaje: ",volt)"""
 
-ser.close()
