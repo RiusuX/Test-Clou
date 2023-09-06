@@ -2,15 +2,16 @@ import serial
 import binascii
 import json
 
+#Configuracion del puerto
+ser = serial.Serial(port='COM2',baudrate=2400,
+                    bytesize=serial.EIGHTBITS,
+                    parity=serial.PARITY_EVEN,
+                    stopbits=serial.STOPBITS_ONE)
+#inicia la comunicacion
+ser.isOpen()
+
 #envio y lectura de trama 
 def trama(hex_string,tam):
-    #Configuracion del puerto
-    ser = serial.Serial(port='COM6',baudrate=2400,
-                        bytesize=serial.EIGHTBITS,
-                        parity=serial.PARITY_EVEN,
-                        stopbits=serial.STOPBITS_ONE)
-    #inicia la comunicacion
-    ser.isOpen()
     #envio trama de solicitud
     byte_data = bytes.fromhex(hex_string.replace(' ',''))
     print("Trama de datos enviada exitosamente")
@@ -20,7 +21,6 @@ def trama(hex_string,tam):
     for i in range(tam):  # Inicializar la lista con n elementos
         recv.append(binascii.hexlify(ser.read()).decode('utf-8'))
     print("Estos son los datos que llegann",recv)
-    ser.close()
     return recv
 
 def cal(recv,dat,base):
@@ -52,7 +52,7 @@ recv = trama(hex_string,21)
 activePower=cal(recv,3,10000)
 print("La potencia activa es de : ",activePower)
 
-#Maxima demanda: '68 16 00 00 00 15 20 68 11 04 33 33 34 34 FE 16'
+"""#Maxima demanda: '68 16 00 00 00 15 20 68 11 04 33 33 34 34 FE 16'
 hex_string = '68 16 00 00 00 15 20 68 11 04 33 33 34 34 FE 16'
 recv = trama(hex_string,26)
 maximumDemand=cal(recv,8,10000)
@@ -104,5 +104,5 @@ y = json.dumps(x)
 
 # the result is a JSON string:
 print(y) 
-
-
+"""
+ser.close()
