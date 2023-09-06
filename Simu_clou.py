@@ -14,20 +14,23 @@ ser.isOpen()
 Trama_recv = b'\x68\x16\x00\x00\x00\x15\x20\x68\x11\x04\x33\x33\x36\x35\x01\x16'
 #activa lectura
 #data_hex = []
-Hex_str = b''
+hex_str = b''
 #data = []
 for i in range(16):  # Inicializar la lista con n elementos
         #data.append(binascii.hexlify(ser.read()).decode('utf-8'))
         #data_hex.append(binascii.hexlify(ser.read()).decode('utf-8'))
-        Hex_str=Hex_str+ser.read()
+        hex_str=hex_str+ser.read()
 #print(data)
-print(Hex_str)
+print(hex_str)
 #comparacion
-if Hex_str == Trama_recv:
+if hex_str == Trama_recv:
     # Si la trama de solicitud coincide, envía la respuesta
-    Trama_send= b'\x68\x16'  # Define tu respuesta
-    for hex in Trama_send:
-        ser.write(hex)
+    hex_recv= '68 16 00 00 00 15 20 68 11 04 33 33 36 35 01 16'
+    byte_data = bytes.fromhex(hex_recv.replace(' ',''))
+    print("Trama de datos enviada exitosamente")
+    ser.write(byte_data)
+    #for hex in Trama_send:
+    #    ser.write(hex)
     print("Respondido a la solicitud")
 else:
     # Opcionalmente, puedes manejar otros casos aquí
