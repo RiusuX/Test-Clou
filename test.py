@@ -17,7 +17,7 @@ def trama(hex_string,tam):
     ser.write(byte_data)
     # Lee los datos recibidos desde el puerto serial
     recv=[]
-    for i in range(tam):  # Inicializar la lista con 20 elementos
+    for i in range(tam):  # Inicializar la lista con n elementos
         recv.append(binascii.hexlify(ser.read()).decode('utf-8'))
     print("Estos son los datos que llegann",recv)
     ser.close()
