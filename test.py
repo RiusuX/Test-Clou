@@ -52,7 +52,7 @@ recv = trama(hex_string,21)
 activePower=cal(recv,3,10000)
 print("La potencia activa es de : ",activePower)
 
-"""#Maxima demanda: '68 16 00 00 00 15 20 68 11 04 33 33 34 34 FE 16'
+#Maxima demanda: '68 16 00 00 00 15 20 68 11 04 33 33 34 34 FE 16'
 hex_string = '68 16 00 00 00 15 20 68 11 04 33 33 34 34 FE 16'
 recv = trama(hex_string,26)
 maximumDemand=cal(recv,8,10000)
@@ -104,5 +104,5 @@ y = json.dumps(x)
 
 # the result is a JSON string:
 print(y) 
-"""
-ser.close()
+
+
