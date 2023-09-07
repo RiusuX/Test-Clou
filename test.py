@@ -25,10 +25,10 @@ def trama(hex_string,tam):
 
 def cal(recv,dat,base):
     tam = len(recv)
-    a = int(recv[tam-2])-33
-    b = int(recv[tam-3])-33
-    c = int(recv[tam-4])-33
-    d = int(recv[tam-5])-33
+    a = int(recv[tam-3], 16)-51
+    b = int(recv[tam-4], 16)-51
+    c = int(recv[tam-5], 16)-51
+    d = int(recv[tam-6], 16)-51
     if dat == 2:
         val = str(a)+str(b)
         val = int(val)/ base
@@ -39,9 +39,9 @@ def cal(recv,dat,base):
         val = str(a)+str(b)+str(c)+str(d)
         val = int(val)/ base
     else:
-        a = int(recv[tam-7])-33
-        b = int(recv[tam-8])-33
-        c = int(recv[tam-9])-33
+        a = int(recv[tam-8], 16)-51
+        b = int(recv[tam-9], 16)-51
+        c = int(recv[tam-10], 16)-51
         val = str(a)+str(b)+str(c)
         val = int(val)/ base
     return val
