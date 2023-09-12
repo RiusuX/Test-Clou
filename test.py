@@ -20,7 +20,7 @@ def trama(hex_string,tam):
     recv=[]
     for i in range(tam):  # Inicializar la lista con n elementos
         recv.append(binascii.hexlify(ser.read()).decode('utf-8'))
-    print("Estos son los datos que llegann",recv)
+    #print("Estos son los datos que llegann",recv)
     return recv
 
 def cal(recv,dat,base):
@@ -56,13 +56,13 @@ print("La potencia activa es de : ",activePower)
 hex_string = '68 16 00 00 00 15 20 68 11 04 33 33 34 34 FE 16'
 recv = trama(hex_string,26)
 maximumDemand=cal(recv,8,10000)
-print("La potencia activa es de : ",maximumDemand)
+print("La maxima demanda es de : ",maximumDemand)
 
 #Frecuencia: '68 16 00 00 00 15 20 68 11 04 35 33 B3 35 85 16'
 hex_string = '68 16 00 00 00 15 20 68 11 04 35 33 B3 35 85 16'
 recv = trama(hex_string,20)
 frequency=cal(recv,2,100)
-print("La potencia activa es de : ",frequency)
+print("La frecuencia es de : ",frequency)
 
 #Total energia: '68 16 00 00 00 15 20 68 11 04 33 33 34 33 FD 16'
 hex_string = '68 16 00 00 00 15 20 68 11 04 33 33 34 33 FD 16'
